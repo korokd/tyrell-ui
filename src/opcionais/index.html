@@ -1,0 +1,67 @@
+<h2>Opcionais</h2>
+<Label for="formOpcional" >Cadastrar novo opcional:</Label>
+<form novalidate name="formOpcional" id="opcional" ng-submit="registrar(opcional)" method="post">
+        <div class="form-group">
+                <label for="nome">Nome:</label>
+                <input type="text" ng-model="opcional.Nome" name="nome" class="form-control" id="nome" required/>
+                <span ng-show="formOpcional.$invalid">
+            Campo é obrigatório
+            </span>
+        </div>
+        <div class="form-group">
+                <label for="ValorBase">Valor Base:</label>
+                <input type="number" class="form-control" ng-model="opcional.ValorBase" name="valorBase" id="valorBase" required/>
+        </div>
+      <input type="submit" class="btn btn-secondary" ng-disabled="formOpcional.$invalid">
+</form>
+
+<Label for="formOpcionalEditar" class="labeler" >Editar opcional:</Label>
+<form novalidate name="formOpcionalEditar" id="opcional" ng-submit="editar(opcionalEditar)" method="put">
+        <div class="form-group">
+                <label for="id">Identificador do opcional que deseja editar:</label>
+                <input type="number" class="form-control" ng-model="opcionalEditar.Id" name="id" id="id" required/>
+                <span ng-show="formOpcionalEditar.$invalid">
+                        Campo é obrigatório
+                </span>
+        </div>
+        
+        <div class="form-group">
+                <label for="nome">Nome:</label>
+                <input type="text" ng-model="opcionalEditar.Nome" name="nome" class="form-control" id="nome" required/>
+                <span ng-show="formOpcionalEditar.$invalid">
+            Campo é obrigatório
+            </span>
+        </div>
+        <div class="form-group">
+                <label for="ValorBase">Valor Base:</label>
+                <input type="number" class="form-control" ng-model="opcionalEditar.ValorBase" name="valorBase" id="valorBase" required/>
+        </div>
+      <input type="submit" class="btn btn-secondary" ng-disabled="formOpcionalEditar.$invalid">
+      <button type="button" class="btn btn-secondary btn-danger" ng-click="deletar(opcionalEditar.Id)">Deletar opcional</button>
+</form>
+
+<div class="input-group">
+        <input name="searchKeyword" type="text" ng-model="searchKeyword" class="form-control" type="text" placeholder="Pesquisar opcional!" />
+</div>
+
+
+<Label for="opcionaisTodos" >Todos os opcionais:</Label>
+<table class="table table-striped" name="opcionaisTodos">
+        <thead>
+                <th>Identificador</th>
+                <th>Nome</th>
+                <th>Valor Base</th>
+        </thead>
+        <tbody>
+                <tr dir-paginate="opcional in opcionais|orderBy:sortKey:reverse|filter:searchKeyword|itemsPerPage:10 ">
+                        <td>{{opcional.Id}}</td>
+                        <td>{{opcional.Nome}}</td>
+                        <td>{{opcional.ValorBase}}</td>
+                </tr>
+        </tbody>
+        <dir-pagination-controls class="paginate"
+        max-size="10"
+        direction-links="true"
+        boundary-links="true" >
+        </dir-pagination-controls>
+</table>

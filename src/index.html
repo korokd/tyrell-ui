@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://npmcdn.com/angular-toastr/dist/angular-toastr.css" />
+        <link rel="stylesheet" href="style.css">
+  </head>
+  <body ng-app="app">
+      <header-directive></header-directive>
+        <div class="container" id="container-wrapper">
+          <div ng-view></div>
+        </div>
+        <footer>
+          <p>@author leonardo.bork @cwi-software</p>
+        </footer>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular-route.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js" type="text/javascript"></script>  
+        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.js"></script> 
+        <script src="dirPagination.js" type="text/javascript"></script>
+        <script src="auth.module.js" type="text/javascript"></script>
+        <script src="app.module.js"></script>
+        <script src="app.route.js"></script>
+        <script src="/header/header.directive.js"></script>
+        <script src="/modelos/modelos.controller.js"></script>
+        <script src="/home/home.controller.js"></script>
+        <script src="/services/usuario.service.js"></script>
+        <script src="/services/orcamento.service.js"></script>
+        <script src="/services/modelo.service.js"></script>
+        <script src="/services/opcional.service.js"></script>
+        <script src="/opcionais/opcionais.controller.js"></script>
+        <script src="/orcamentos/orcamento.controller.js"></script>
+        <script src="https://npmcdn.com/angular-toastr/dist/angular-toastr.tpls.js"></script>
+  </body>
+</html>

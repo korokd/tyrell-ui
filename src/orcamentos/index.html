@@ -1,0 +1,138 @@
+        <h2>Orcamento</h2>
+
+        <!-- //todo: validacoes -->
+        <Label for="formOrcamento"  class="labeler">Cadastrar novo orcamento:</Label>
+        <form novalidate name="formOrcamento" id="Orcamento" ng-submit="registrar(orcamento)" method="post">
+                <div class="form-group">
+                        <label for="nomeCliente">Nome do cliente:</label>
+                        <input type="text" ng-model="orcamento.NomeCliente" name="nomeCliente" class="form-control" id="nomeCliente" required/>
+                        <span ng-show="formOrcamento.$invalid ">
+                Campo é obrigatório
+                </span>
+                </div>
+                <div class="form-group"></div>
+                <label for="nome">Cpf do cliente:</label>
+                <input type="text" ng-model="orcamento.CpfCliente" name="cpfCliente" class="form-control" id="cpfCliente" required/>
+                <span ng-show="formOrcamento.$invalid">
+                Campo é obrigatório
+                </span>
+                </div>
+                <div class="form-group">
+                <label for="nome">Telefone do cliente:</label>
+                <input type="text" ng-model="orcamento.TelefoneCliente" name="telefone" class="form-control" id="telefone" required/>
+                <span ng-show="formOrcamento.$invalid">
+                        Campo é obrigatório
+                </span>
+                </div>
+
+                <div class="form-group">
+                        <label for="modelo">Modelo:</label>
+                        <select class="form-control" ng-model="orcamento.IdModelo" ng-change="atualizarOpcionais(orcamento.IdModelo); atualizarOrcamento(orcamento); " type="select" name="modelo" id="modelo" required>
+                        <option ng-repeat="modelo in modelos" value="{{modelo.Id}}">{{modelo.Nome}}</option>
+                        </select>
+                        <span ng-show="formOrcamento.$invalid">
+                                Campo é obrigatório
+                        </span>
+                </div>
+
+                <div class="form-group">
+                        <label for="opcional">Opcionais:</label>
+                        <span ng-repeat="opcional in opcionais">
+                                <label class="checkbox" for="{{opcional.Id}}">
+                                <input type="checkbox" ng-true-value="{{opcional.Id}}" ng-model="idsOpcionaisOrcamento[opcional.Id]" ng-change="atualizarOrcamento(orcamento)" name="opcional"/>
+                                {{opcional.Nome}}
+                                </label>
+                        </span>
+                </div>
+                <ul class="list-group">
+                        <li class="list-group-item">Subtotal: R$ {{valorOrcamento.Subtotal}}</li>
+                        <li class="list-group-item">ICMS: R$ {{valorOrcamento.ICMS}}</li>
+                        <li class="list-group-item">IPI: R$ {{valorOrcamento.IPI}}</li>
+                        <li class="list-group-item">Total: R$ {{valorOrcamento.Total}}</li>
+                </ul>
+        <input type="submit" class="btn btn-secondary" ng-disabled="formOrcamento.$invalid">
+        </form>
+
+        <Label for="formOrcamentoEditar"  class="labeler">Editar orcamento:</Label>
+        <form novalidate name="formOrcamentoEditar" id="Orcamento" ng-submit="editar(orcamentoEditar)" method="post">
+                
+                <div class="form-group">
+                        <label for="id">Identificador do orcamento que deseja editar:</label>
+                        <input type="number" class="form-control" ng-model="orcamentoEditar.Id" name="id" id="id" required/>
+                        <span ng-show="formOrcamentoEditar.$invalid">
+                                Campo é obrigatório
+                        </span>
+                </div>        
+                <div class="form-group">
+                        <label for="nomeCliente">Nome do cliente:</label>
+                        <input type="text" ng-model="orcamentoEditar.NomeCliente" name="nomeCliente" class="form-control" id="nomeCliente" required/>
+                        <span ng-show="formOrcamentoEditar.$invalid ">
+                    Campo é obrigatório
+                    </span>
+                </div>
+                <div class="form-group"></div>
+                    <label for="nome">Cpf do cliente:</label>
+                    <input type="text" ng-model="orcamentoEditar.CpfCliente" name="cpfCliente" class="form-control" id="cpfCliente" required/>
+                    <span ng-show="formOrcamentoEditar.$invalid">
+                Campo é obrigatório
+                </span>
+                </div>
+                <div class="form-group">
+                    <label for="nome">Telefone do cliente:</label>
+                    <input type="text" ng-model="orcamentoEditar.TelefoneCliente" name="telefone" class="form-control" id="telefone" required/>
+                    <span ng-show="formOrcamento.$invalid">
+                         Campo é obrigatório
+                    </span>
+                </div>
+        
+                <div class="form-group">
+                        <label for="modelo">Modelo:</label>
+                        <select class="form-control" ng-model="orcamentoEditar.IdModelo" ng-change="atualizarOpcionaisEditar(orcamentoEditar.IdModelo)" type="select" name="modelo" id="modelo" required>
+                           <option ng-repeat="modelo in modelos" value="{{modelo.Id}}">{{modelo.Nome}}</option>
+                        </select>
+                        <span ng-show="formOrcamentoEditar.$invalid">
+                                Campo é obrigatório
+                        </span>
+                </div>
+        
+                <div class="form-group">
+                        <label for="opcional">Opcionais:</label>
+                        <span ng-repeat="opcional in opcionaisEditar">
+                                <label class="checkbox" for="{{opcional.Id}}">
+                                  <input type="checkbox" ng-true-value="{{opcional.Id}}" ng-model="idsOpcionaisOrcamentoEditar[opcional.Id]" name="opcional"/>
+                                  {{opcional.Nome}}
+                                </label>
+                        </span>
+                </div>
+                <input type="submit" class="btn btn-secondary" ng-disabled="formOrcamentoEditar.$invalid">
+                <button type="button" class="btn btn-secondary btn-danger" ng-click="deletar(orcamentoEditar.Id)">Deletar orcamento</button>
+        </form>
+
+        <div class="input-group">
+                <input name="searchKeyword" type="text" ng-model="searchKeyword" class="form-control" type="text" placeholder="Pesquisar orcamento!" />
+        </div>
+                
+
+        <Label for="orcamentoTodos"  class="labeler">Todos os orcamentos: </Label>
+        <table class="table table-striped" name="orcamentoTodos">
+                <thead>
+                        <th>Identificador</th>
+                        <th>Nome do Cliente</th>
+                        <th>Cpf do Cliente</th>
+                        <th>Valor total</th>
+                        <th>Modelo</th>
+                        <th>Opcionais</th>
+                </thead>
+                <tbody>
+                        <tr ng-repeat="orcamento in orcamentoTodos | filter: searchKeyword">
+                                <td>{{orcamento.Id}}</td>
+                                <td>{{orcamento.NomeCliente}}</td>
+                                <td>{{orcamento.CpfCliente}}</td>
+                                <td>R$:{{orcamento.Total}}</td>
+                                <td>{{orcamento.Modelo.Nome}}</td>
+                                <td><ul ng-repeat="opcional in orcamento.Opcionais" class="opcionais-orcamento">
+                                <li>{{opcional.Nome}}</li>
+                                </ul></td>
+                        </tr>
+                </tbody>
+        </table>

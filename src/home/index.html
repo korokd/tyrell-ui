@@ -1,0 +1,60 @@
+<div class="content">
+        <h2 id="container-title">Bem vindo</h2>
+        <p>Utilizando uma API contruida em C# <a href="https://www.asp.net/web-api"><strong>ASP.NET</strong></a>  e <a href="https://msdn.microsoft.com/en-us/library/ee712907(v=vs.113).aspx"><strong>EntityFramework</strong></a> e <strong><a href="https://angularjs.org/">AngularJS </a></strong> criei um sistema de uma concessionaria!<br>
+            Quando se é um colaborador podemos fazer orcamentos de <strong>pedidos.</strong> Já quando estamos logados como <strong>Admins</strong> podemos criar modelos, opcionais e tambem fazer orcamentos <br><br>
+            A criação desta aplicação se deve ao módulo 6 do projeto crescer, na <strong>CWI Software.</strong><br>
+            Onde os alunos foram instruidos a utilização dessas tecnologia e foram requisitados a criar um sistema baseado nesses modos</strong>
+        </p>
+        <hr>
+        <div class="login">
+    
+            <label for="formLogin">Login</label>
+            <form novalidate name="formLogin" id="login" ng-submit="logar(usuario)">
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="text" ng-model="usuario.email" name="email" class="form-control" id="email"  required />
+                </div>
+
+                <div class="form-group">
+                    <label for="senha">Senha:</label>
+                    <input type="password" class="form-control" ng-model="usuario.senha" name="senha" id="senha" required ng-minlength="3" required />
+                </div>
+                    <input type="submit" class="btn btn-secondary" ng-disabled="formLogin.$invalid">
+            </form>
+
+            <button ng-click="mostrarRegistrar = !mostrarRegistrar" class="btn btn-lg btn-primary">Registro de colaborador</button>
+            <form novalidate name="formRegistrar" ng-show="mostrarRegistrar" id="login" ng-submit="registrar(usuario)" method="post">
+                <div class="form-group">
+                    <label for="nome">Nome:</label>
+                    <input type="text" ng-model="usuario.Nome" name="nome" class="form-control" id="nome" required/>
+                    <span ng-show="formRegistrar.$invalid">
+                        Campo é obrigatório
+                    </span>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="text" ng-model="usuario.Email" name="email" class="form-control" id="email" required/>
+                    <span ng-show="formRegistrar.$invalid">
+                    Campo é obrigatório
+                    </span>
+                </div>
+          
+                <div class="form-group">
+                        <label for="senha">Senha:</label>
+                        <input type="text" class="form-control" ng-model="usuario.Senha" name="senha" id="senha" required ng-minlength="6" />
+                        <span ng-show="formRegistrar.$invalid">
+                          Campo é obrigatório e deve ter no minimo seis caracteres
+                        </span>
+                </div>
+
+                <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" ng-model="usuario.Admin">
+                        Administrador
+                </label><br>
+                
+                <input type="submit" class="btn btn-secondary" ng-disabled="formRegistrar.$invalid">
+                <button type="button" class="btn btn-secondary" ng-click="mostrarRegistrar = false">Cancelar</button>
+            </form>
+        </div>  
+</div>        

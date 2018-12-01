@@ -1,0 +1,28 @@
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  <a class="navbar-brand" href="/">
+    <img src="/images/car-wheel.svg" width="50" height="50" class="d-inline-block align-top" alt="">
+      Carros-seria
+  </a> 
+  <form class="form-inline my-2 my-lg-0">
+      <div ng-if="usuario" class="form-header">
+          <div class="form-group">
+            <label>Olá {{usuario.usuario.Nome}}</label>
+          </div>
+          <button type="button" class="btn btn-danger" ng-click="logout()">Logout</button>
+        </div>
+        <div ng-if="!usuario">
+          <a class="btn btn-primary" href="/#!/home#login" role="button">Login</a>
+        </div>  
+  </form> 
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+      <ul class="nav navbar-nav">
+          <li><a href="/#!/home">Home</a></li>
+          <li ng-if="autenticado()"><a href="/#!/orcamento">Orçamentos</a></li>
+          <li ng-if="admin()"><a href="/#!/modelos">Modelos</a></li>
+          <li ng-if="admin()"><a href="/#!/opcionais">Opcionais</a></li>
+      </ul>    
+  </div>
+</nav>
